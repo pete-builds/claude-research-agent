@@ -64,14 +64,14 @@ The portable version:
 
 ### `SKILL.md` — Full version
 
-Requires two self-hosted MCP servers:
+This is the production version of the skill. It references two custom MCP servers that are not included in this repo:
 
-| Dependency | What it does |
-|---|---|
-| [SearXNG](https://github.com/searxng/searxng) | Self-hosted metasearch engine aggregating Bing, DuckDuckGo, Brave, Reddit, and more. Gives the agent `search_deep`, `search_news`, `search_tech` tools with deduplication and multi-engine confidence scoring. |
-| Threat intel MCP | Provides IOC lookups, CVE checks, breach monitoring, dark web search, and OTX pulse scanning. Useful for security research topics. |
+- **SearXNG MCP**: Wraps a self-hosted [SearXNG](https://github.com/searxng/searxng) instance and exposes it as Claude Code tools (`search_deep`, `search_news`, `search_tech`). SearXNG aggregates results from multiple search engines, deduplicates by URL, and scores results by how many engines found them.
+- **Threat intel MCP**: Provides IOC lookups, CVE checks, breach monitoring, dark web search, and OTX pulse scanning. Useful for security research.
 
-If you only have SearXNG (no threat intel), the full skill still works. It just skips the threat intel steps for non-security topics.
+`SKILL.md` is published here as a reference for what's possible when you pair Claude Code with custom search infrastructure. If you want to build a similar setup, start with SearXNG's Docker image and an MCP server that wraps its search API.
+
+**If you don't have these MCP servers, use `SKILL-portable.md` instead.** It produces the same report format using only built-in Claude Code tools.
 
 ---
 
