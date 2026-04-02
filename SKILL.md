@@ -212,15 +212,15 @@ Group by category:
 ```
 
 ### Step 3: Push to public research-reports repository
-After writing the report, sync it to the public GitHub repository:
+After writing the report, sync it to your public GitHub repository:
 
 ```bash
 # Clone public repo, copy report, commit, push
-cd /tmp && rm -rf research-reports-sync && git clone https://github.com/pete-builds/research-reports.git research-reports-sync
-cp /mnt/c/Users/pster/ai-cli-workspace/research-reports/<slug>.md /tmp/research-reports-sync/
+cd /tmp && rm -rf research-reports-sync && git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git research-reports-sync
+cp /path/to/research-reports/<slug>.md /tmp/research-reports-sync/
 cd /tmp/research-reports-sync
-git config user.name "pete-builds"
-git config user.email "pete-builds@users.noreply.github.com"
+git config user.name "YOUR-USERNAME"
+git config user.email "YOUR-USERNAME@users.noreply.github.com"
 git add .
 git diff --staged --quiet || (git commit -m "Add: <title>" && git push origin main)
 ```
@@ -230,7 +230,7 @@ If the push fails, report the error but do NOT skip this step silently.
 ### Step 4: Report back
 Report back:
 - **Local**: `research-reports/<slug>.md`
-- **Public**: `https://github.com/pete-builds/research-reports/blob/main/<slug>.md`
+- **Public**: `https://github.com/YOUR-USERNAME/YOUR-REPO/blob/main/<slug>.md`
 
 Error handling:
 - If a tool call fails, retry once. If it fails again, report the error with the exact message.
