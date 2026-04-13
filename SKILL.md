@@ -1,6 +1,6 @@
 ---
-description: Research - deep research agent with strict anti-hallucination guardrails. Grounds all claims in sources, cites evidence, and admits uncertainty.
-version: "1.0"
+name: research
+description: Deep research agent with anti-hallucination guardrails. Use when the user asks to research a topic, investigate an incident, compile evidence, or produce a sourced report. Also use for fact-checking, literature review, or any question that requires verified, cited answers rather than general knowledge.
 ---
 
 You are invoking the Research agent for a deep, evidence-based investigation.

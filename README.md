@@ -2,7 +2,7 @@
 
 A custom skill for [Claude Code](https://claude.com/claude-code) that turns the AI into a disciplined, citation-grounded research tool.
 
-Invoke it with `/research <topic>` and it produces a fully sourced, structured report, saved locally and optionally pushed to a public GitHub repo.
+Invoke it with `/research <topic>` and it produces a fully sourced, structured report saved locally as both Markdown and a shareable HTML file.
 
 **Example output:** [Claude Code Source Code Leak](https://pete-builds.github.io/research-reports/claude-code-source-code-leak.html)
 
@@ -153,6 +153,28 @@ This keeps recurring research cheap. A full fresh report might use 50k tokens. A
 /research anthropic model spec changes
 /research critical infrastructure ransomware trends 2026
 ```
+
+---
+
+## Using with an API Gateway (Enterprise Search)
+
+If your organization routes LLM requests through an API gateway (like [LiteLLM](https://github.com/BerriAI/litellm) or a managed Vertex AI endpoint), the portable version works as-is. Claude Code's built-in `WebSearch` and `WebFetch` tools operate at the client level, independent of which backend serves the model.
+
+Some gateways also expose their own search capabilities. For example, Google's Vertex AI offers [Enterprise Web Search](https://cloud.google.com/vertex-ai/generative-ai/docs/grounding/web-grounding-enterprise) as a grounding tool for Gemini models. If your gateway supports this, you can create a companion skill (e.g., `gemini-search`) that calls the gateway's search endpoint and use it alongside this research skill.
+
+The research skill handles methodology: anti-hallucination guardrails, citation discipline, confidence assessment, and report structure. A gateway search skill handles the search backend. They're complementary, not competing.
+
+---
+
+## Skill Authoring Notes
+
+This skill follows the [Claude Code skills specification](https://code.claude.com/docs/en/skills):
+
+- **Frontmatter** uses `name` and `description` fields (the two fields Claude reads at startup for auto-triggering).
+- **Description** is written to be trigger-friendly: it lists the situations where the skill should activate, not just what it does. Claude tends to under-trigger skills, so descriptions should be explicit about when to use them.
+- **No external dependencies** in the portable version. The full version declares its MCP server dependencies in the README so users know what's required before installing.
+
+If you're building your own skills, Anthropic publishes authoring guidance at [Skills Authoring Best Practices](https://code.claude.com/docs/en/skills).
 
 ---
 
