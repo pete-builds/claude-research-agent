@@ -59,8 +59,10 @@ Uses Claude Code's built-in `WebSearch` and `WebFetch` tools. No additional setu
 
 The portable version:
 - Uses `WebSearch` for discovery, `WebFetch` for source verification
-- Saves reports to `./research-reports/` in your current working directory
-- Skips the GitHub auto-publish step (you can add it manually)
+- Saves reports to `./research-reports/` in your current working directory in two formats:
+  - **Markdown** (`.md`) for editing, version control, and update cycles
+  - **HTML** (`.html`) for reading, sharing, and printing. Self-contained, no external dependencies, works offline, supports dark mode.
+- No GitHub account or publishing step required. Share the HTML file however you want: email, shared drive, Slack, Teams, or just open it in a browser.
 
 ### `SKILL.md` — Full version
 
@@ -97,7 +99,7 @@ git config user.email "YOUR-USERNAME@users.noreply.github.com"
 
 ## Report Format
 
-Every report is generated in the same structure:
+Every report is generated in the same structure and saved as both `.md` and `.html`:
 
 ```
 ---
@@ -124,6 +126,8 @@ summary:
 ## Update History
 ## How This Report Was Generated
 ```
+
+The HTML version is a single self-contained file: no JavaScript, no CDN links, no external dependencies. It supports light and dark mode, renders cleanly on any screen size, and can be opened directly from the filesystem or shared as an attachment.
 
 ---
 
